@@ -34,7 +34,7 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
             },
             icon: const Icon(Icons.arrow_back, color: Colors.black,),
           ),
-          title: const Text('Category', style: TextStyle(color: Colors.black),),
+          title: const Text(' All Categories', style: TextStyle(color: Colors.black),),
         ),
         body: RefreshIndicator(
           onRefresh: () async {
@@ -55,8 +55,13 @@ class _CategoryListScreenState extends State<CategoryListScreen> {
                   return FittedBox(
                     child: CategoryCard(
                       categoryData: categoryController.categoryModel.data![index],
-                      onTap: (){
-                        Get.to( () => ProductListScreen(categoryId: categoryController.categoryModel.data![index].id!),);
+                      onTap: () {
+                        Get.to(
+                          () => ProductListScreen(
+                              remark: categoryController.categoryModel.data![index].categoryName,
+                              categoryId: categoryController
+                                  .categoryModel.data![index].id!),
+                        );
                       },
                     ),
                   );

@@ -9,7 +9,8 @@ import '../utilities/app_colors.dart';
 class ProductListScreen extends StatefulWidget {
   final int? categoryId;
   final ProductModel? productModel;
-  const ProductListScreen({super.key, this.categoryId, this.productModel});
+  final String? remark;
+  const ProductListScreen({super.key, this.categoryId, this.productModel, this.remark});
 
   @override
   State<ProductListScreen> createState() => _ProductListScreenState();
@@ -39,9 +40,9 @@ List<String> demList = ['a', 'b', 'c'];
         leading: const BackButton(
           color: Colors.black,
         ),
-        title: const Text(
-          'Product List',
-          style: TextStyle(color: Colors.black),
+        title: Text(
+          '${widget.remark} Product List',
+          style: const TextStyle(color: Colors.black),
         ),
       ),
       body: GetBuilder<ProductListController>(

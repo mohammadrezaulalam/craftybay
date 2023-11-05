@@ -1,4 +1,5 @@
 import 'package:craftybay/presentation/ui/screens/product_list_screen.dart';
+import 'package:craftybay/presentation/ui/screens/splash_screen.dart';
 import 'package:craftybay/presentation/ui/utilities/app_colors.dart';
 import 'package:craftybay/presentation/ui/utilities/theme/theme_service.dart';
 import 'package:flutter/material.dart';
@@ -59,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
               icon: Icons.phone,
               onTap: () async {
                 await AuthController.clear();
+                Get.to(const SplashScreen());
               },
             ),
             const SizedBox(width: 8),
@@ -137,8 +139,13 @@ class _HomeScreenState extends State<HomeScreen> {
                         return CategoryCard(
                           categoryData: categoryController.categoryModel.data![index],
                           onTap: (){
-                            Get.to( () => ProductListScreen(categoryId: categoryController.categoryModel.data![index].id!));
-                          },
+                            Get.to( () =>
+                                ProductListScreen(
+                                  remark: categoryController.categoryModel.data![index].categoryName,
+                                categoryId: categoryController
+                                    .categoryModel.data![index].id!),
+                          );
+                        },
                         );
                       },
                     );
@@ -151,6 +158,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   Get.to( () =>
                     ProductListScreen(
+                      remark: 'Popular',
                       productModel:
                       Get.find<PopularProductController>().popularProductModel,
                     ),
@@ -185,6 +193,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   Get.to(
                     ProductListScreen(
+                      remark: 'Special',
                       productModel:
                       Get.find<SpecialProductController>().specialProductModel,
                     ),
@@ -218,6 +227,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 onTap: () {
                   Get.to(
                     ProductListScreen(
+                      remark: 'New',
                       productModel:
                           Get.find<NewProductController>().newProductModel,
                     ),
