@@ -53,8 +53,9 @@ CraftyBay follows a well-organized project structure for maintainability and sca
 └── crafty_bay/
     ├── assets/
     │   ├── images/
+    │   │   ├── logo.svg
     │   │   ├── logo_nav.svg
-    │   │   └── logo_nav.svg
+    │   │   └── shoe.png
     └── lib/
         ├── application/
         │   ├── app.dart
