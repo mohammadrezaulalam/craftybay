@@ -6,7 +6,7 @@
 CraftyBay, your tech haven! Explore a world of cutting-edge electronics and gadgets. From state-of-the-art smartphones to smart home devices, CraftyBay is your gateway to innovation. Our handpicked selection combines top-tier performance with sleek design. Elevate your lifestyle, stay connected, and enjoy the latest tech trends with CraftyBay. Shop now and immerse yourself in the world of tomorrow's gadgets, today.
 
 
-|        **Feature-MVP Atchitecture**      |
+|        **Feature-based MVP Atchitecture**      |
 
 
 MVP (Model-View-Presenter) is an architectural pattern that can be applied to Flutter code, just as it can be used in various other programming languages and frameworks. The primary benefits of using the MVP architecture in a Flutter codebase include:
