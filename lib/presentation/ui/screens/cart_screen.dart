@@ -95,7 +95,7 @@ class _CartScreenState extends State<CartScreen> {
                         width: 120,
                         child: ElevatedButton (
                           onPressed: () async {
-                            if( await Get.find<ReadProfileDataController>().readProfileData()){
+                            if( await Get.find<ReadProfileDataController>().readProfileData() == false){
                               Get.to( () => const CompleteProfileScreen());
                             }else if(Get.find<CartListController>().cartListModel.data?.isNotEmpty ?? false){
                               Get.to( () => const CheckOutScreen());

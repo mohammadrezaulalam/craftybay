@@ -6,6 +6,9 @@ class Themes{
   final lightTheme = ThemeData.light().copyWith(
     primaryColor:
     MaterialColor(AppColors.primaryColor.value, AppColors().color),
+    appBarTheme: AppBarTheme(
+      backgroundColor: Colors.white,
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 13),
@@ -36,9 +39,13 @@ class Themes{
   final darkTheme = ThemeData.dark().copyWith(
     brightness: Brightness.dark,
     primaryColor: MaterialColor(AppColors.primaryColor.value, AppColors().color),
+    appBarTheme: AppBarTheme(
+      backgroundColor: Color.fromRGBO(43, 45, 48, 1),
+    ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
         padding: const EdgeInsets.symmetric(vertical: 13),
+        backgroundColor: AppColors.primaryColor,
         textStyle: const TextStyle(
             fontSize: 16, letterSpacing: 0.5, fontWeight: FontWeight.w600),
         shape: RoundedRectangleBorder(
@@ -57,6 +64,9 @@ class Themes{
       disabledBorder: OutlineInputBorder(
         borderSide: BorderSide(color: Colors.grey),
       ),
+        focusedBorder: OutlineInputBorder(
+          borderSide: BorderSide(color: AppColors.primaryColor),
+        )
     ),
   );
 }

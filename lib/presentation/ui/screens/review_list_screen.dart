@@ -21,8 +21,8 @@ class _ReviewListScreenState extends State<ReviewListScreen> {
 
   @override
   void initState() {
-    WidgetsBinding.instance.addPostFrameCallback((_) {
-      Get.find<ProductReviewListController>().getProductReviewList(widget.productId);
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      await Get.find<ProductReviewListController>().getProductReviewList(widget.productId);
     });
     super.initState();
   }
@@ -45,78 +45,78 @@ class _ReviewListScreenState extends State<ReviewListScreen> {
         onRefresh: () async {
           await Get.find<ProductReviewListController>().getProductReviewList(widget.productId);
         },
-        child: Column(
-                children: [
-                  Expanded(
-                    child: GetBuilder<ProductReviewListController>(
-                      builder: (productReviewListController) {
+        child: GetBuilder<ProductReviewListController>(
+          builder: (productReviewListController) {
+            if(productReviewListController.getProductReviewListInProgress){
+              return const Center(
+                child: CircularProgressIndicator(color: AppColors.primaryColor,),
+              );
+            }
+            return Column(
+                    children: [
+                      Expanded(
+                        child: ListView.builder(
+                              itemCount: productReviewListController.productReviewListModel.data?.length ?? 0,
+                              reverse: true,
+                              itemBuilder: (context, index) {
+                                return ReviewCard(
+                                  reviewData: productReviewListController.productReviewListModel.data![index],
+                                );
+                              },
+                            ),
 
-                        if(productReviewListController.getProductReviewListInProgress){
-                          return const Center(
-                            child: CircularProgressIndicator(color: AppColors.primaryColor,),
-                          );
-                        }
-                        return ListView.builder(
-                          itemCount: productReviewListController.productReviewListModel.data?.length ?? 0,
-                          reverse: true,
-                          itemBuilder: (context, index) {
-                            return ReviewCard(
-                              reviewData: productReviewListController.productReviewListModel.data![index],
-                            );
-                          },
-                        );
-                      }
-                    ),
-                  ),
-                  Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
-                    decoration: BoxDecoration(
-                        borderRadius: const BorderRadius.only(topRight: Radius.circular(25), topLeft: Radius.circular(25)),
-                        color: AppColors.primaryColor.withOpacity(0.1)
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
+                      ),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 16.0),
+                        decoration: BoxDecoration(
+                            borderRadius: const BorderRadius.only(topRight: Radius.circular(25), topLeft: Radius.circular(25)),
+                            color: AppColors.primaryColor.withOpacity(0.1)
+                        ),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
-                            Text(
-                              'Reviews',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                                color: Colors.grey.shade600,
+                            Row(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                Text(
+                                  'Reviews',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18,
+                                    color: Colors.grey.shade600,
+                                  ),
+                                ),
+                                const SizedBox(width: 8),
+                                Text(productReviewListController.productReviewListModel.data?.length.toString() ?? '0',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18,
+                                    color: Colors.grey.shade600,
+                                  ),),
+                              ],
+                            ),
+                            InkWell(
+                              onTap: () async {
+                                if(await Get.find<ReadProfileDataController>().readProfileData() == false){
+                                  Get.to( () => const CompleteProfileScreen());
+                                }else{
+                                  Get.to( () => CreateReviewScreen( productId:  widget.productId,));
+                                }
+
+                              },
+                              child: const CircleAvatar(
+                                radius: 25,
+                                backgroundColor: AppColors.primaryColor,
+                                child: Icon(Icons.add, size: 35, color: Colors.white,),
                               ),
                             ),
-                            const SizedBox(width: 8),
-                            Text('(123)',
-                              style: TextStyle(
-                                fontWeight: FontWeight.w600,
-                                fontSize: 18,
-                                color: Colors.grey.shade600,
-                              ),),
                           ],
                         ),
-                        InkWell(
-                          onTap: () async {
-                            if(await Get.find<ReadProfileDataController>().readProfileData() == 'null'){
-                              Get.to( () => const CompleteProfileScreen());
-                            }else{
-                              Get.to( () => CreateReviewScreen( productId:  widget.productId,));
-                            }
-
-                          },
-                          child: const CircleAvatar(
-                            radius: 25,
-                            backgroundColor: AppColors.primaryColor,
-                            child: Icon(Icons.add, size: 35, color: Colors.white,),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                ],
-              ),
+                      ),
+                    ],
+                  );
+          }
+        ),
 
       ),
     );

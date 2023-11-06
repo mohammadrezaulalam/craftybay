@@ -1,3 +1,5 @@
+import 'package:craftybay/presentation/state_holders/read_profile_data_controller.dart';
+import 'package:craftybay/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:craftybay/presentation/ui/screens/review_list_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -308,12 +310,16 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     );
   }
 
-void _toggleFavourite() async {
-    setState(() { });
-      if(!_isFavourite){
+  void _toggleFavourite() async {
+    setState(() {});
+    if(await Get.find<ReadProfileDataController>().readProfileData() == false){
+      Get.to( () => const CompleteProfileScreen() );
+    }else{
+      if (!_isFavourite) {
         _isFavourite = true;
-        final result = await Get.find<CreateWishListController>().createWishList(widget.productId ?? 0);
-        if(result){
+        final result = await Get.find<CreateWishListController>()
+            .createWishList(widget.productId ?? 0);
+        if (result) {
           Get.snackbar(
             'Added to WishList',
             'This Product has been Added to Wishlist',
@@ -322,10 +328,11 @@ void _toggleFavourite() async {
             backgroundColor: AppColors.primaryColor.withOpacity(0.5),
           );
         }
-      }else{
+      } else {
         _isFavourite = false;
-        final result = await Get.find<ReadWishListController>().removeFromWishList(widget.productId ?? 0);
-        if(result){
+        final result = await Get.find<ReadWishListController>()
+            .removeFromWishList(widget.productId ?? 0);
+        if (result) {
           Get.snackbar(
             'WishList Deleted',
             'This Product has been Removed from Wishlist',
@@ -335,7 +342,8 @@ void _toggleFavourite() async {
           );
         }
       }
-}
+    }
+  }
 }
 
 

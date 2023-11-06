@@ -78,6 +78,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                     animationType: AnimationType.fade,
                     mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                     keyboardType: TextInputType.number,
+                    textStyle: TextStyle(color: Colors.black),
                     pinTheme: PinTheme(
                       shape: PinCodeFieldShape.box,
                       borderRadius: BorderRadius.circular(5),
@@ -88,7 +89,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                       selectedFillColor: Colors.white,
                       activeColor: AppColors.primaryColor,
                       inactiveColor: AppColors.primaryColor,
-                      selectedColor: Colors.green,
+                      selectedColor: AppColors.primaryColor,
                     ),
                     animationDuration: const Duration(milliseconds: 300),
                     enableActiveFill: true,
@@ -187,7 +188,7 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
   Future<void> verifyOtp(OtpVerificationController controller) async {
     final response = await controller.verifyOtp(widget.email, _otpTEController.text.trim());
     if(response){
-      if( await Get.find<ReadProfileDataController>().readProfileData() == true){
+      if( await Get.find<ReadProfileDataController>().readProfileData() == false){
         Get.to( () => const CompleteProfileScreen());
       }else{
         Get.to( () => const MainBottomNavScreen());

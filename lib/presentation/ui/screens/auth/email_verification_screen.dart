@@ -54,6 +54,7 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _emailTEController,
                     decoration: const InputDecoration(
                       hintText: 'Enter Email Address',

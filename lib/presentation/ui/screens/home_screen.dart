@@ -1,8 +1,10 @@
+import 'package:craftybay/presentation/ui/screens/auth/complete_profile_screen.dart';
 import 'package:craftybay/presentation/ui/screens/product_list_screen.dart';
 import 'package:craftybay/presentation/ui/screens/splash_screen.dart';
 import 'package:craftybay/presentation/ui/utilities/app_colors.dart';
 import 'package:craftybay/presentation/ui/utilities/theme/theme_service.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get.dart';
 import '../../state_holders/auth_controller.dart';
 import '../../state_holders/category_controller.dart';
@@ -10,7 +12,6 @@ import '../../state_holders/home_slider_controller.dart';
 import '../../state_holders/main_bottom_nav_controller.dart';
 import '../../state_holders/new_product_controller.dart';
 import '../../state_holders/popular_product_controller.dart';
-import '../../state_holders/read_profile_data_controller.dart';
 import '../../state_holders/special_product_controller.dart';
 import '../utilities/image_assets.dart';
 import '../widgets/category_card.dart';
@@ -28,55 +29,90 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
 
-  @override
-  void initState() {
-    super.initState();
-  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      //backgroundColor: Colors.white,
       appBar: AppBar(
-        backgroundColor: Colors.white,
+        automaticallyImplyLeading: false,
+        //backgroundColor: Colors.white,
         elevation: 0,
-        centerTitle: false,
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            ImageAssets.navLogo,
-            const Spacer(),
-            const SizedBox(width: 8),
-
-            CircularIconButton(
+        //title: ImageAssets.navLogo,
+        title: SvgPicture.asset(
+          ImageAssets.craftyBayLogoNavSVG,
+          width: 115,
+        ),
+        actions: [
+        CircularIconButton(
               icon: Icons.person,
               onTap: (){
-                Get.find<ReadProfileDataController>().readProfileData();
+                //Get.find<ReadProfileDataController>().readProfileData();
+                Get.to( () => const CompleteProfileScreen());
               },
             ),
-
-            const SizedBox(width: 8),
-            CircularIconButton(
-              icon: Icons.phone,
-              onTap: () async {
-                await AuthController.clear();
-                Get.to(const SplashScreen());
-              },
-            ),
-            const SizedBox(width: 8),
-            CircularIconButton(
-              icon: Icons.notifications_on_outlined,
-              onTap: (){},
-            ),
-            const SizedBox(width: 8),
-            CircularIconButton(
-              icon: Icons.light_mode_outlined,
-              onTap: () {
-                ThemeService().changeThemeMode();
-              },
-            ),
-          ],
-        ),
+          const SizedBox(width: 8),
+          CircularIconButton(
+            icon: Icons.phone,
+            onTap: () {},
+          ),
+          const SizedBox(width: 8),
+          CircularIconButton(
+            icon: Icons.notifications_on_outlined,
+            onTap: (){},
+          ),
+          const SizedBox(width: 8),
+          CircularIconButton(
+            icon: Icons.light_mode_outlined,
+            onTap: () {
+              ThemeService().changeThemeMode();
+            },
+          ),
+          const SizedBox(width: 8),
+          CircularIconButton(
+            icon: Icons.logout,
+            onTap: () async {
+              await AuthController.clear();
+              Get.to(const SplashScreen());
+            },
+          ),
+          const SizedBox(width: 12),
+        ],
+        // title: Row(
+        //   children: [
+        //     ImageAssets.navLogo,
+        //     const Spacer(),
+        //     const SizedBox(width: 8),
+        //
+        //     CircularIconButton(
+        //       icon: Icons.person,
+        //       onTap: (){
+        //         Get.find<ReadProfileDataController>().readProfileData();
+        //       },
+        //     ),
+        //
+        //     const SizedBox(width: 8),
+        //     CircularIconButton(
+        //       icon: Icons.phone,
+        //       onTap: () async {
+        //         await AuthController.clear();
+        //         Get.to(const SplashScreen());
+        //       },
+        //     ),
+        //     const SizedBox(width: 8),
+        //     CircularIconButton(
+        //       icon: Icons.notifications_on_outlined,
+        //       onTap: (){},
+        //     ),
+        //     const SizedBox(width: 8),
+        //     CircularIconButton(
+        //       icon: Icons.light_mode_outlined,
+        //       onTap: () {
+        //         ThemeService().changeThemeMode();
+        //       },
+        //     ),
+        //   ],
+        // ),
       ),
       body: SingleChildScrollView(
         child: Padding(

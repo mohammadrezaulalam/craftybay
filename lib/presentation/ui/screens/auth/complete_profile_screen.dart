@@ -1,11 +1,12 @@
 
+import 'package:craftybay/presentation/state_holders/read_profile_data_controller.dart';
+import 'package:craftybay/presentation/ui/screens/main_bottom_nav_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 
 import '../../../state_holders/complete_profile_controller.dart';
 import '../../utilities/app_colors.dart';
 import '../../utilities/image_assets.dart';
-import '../home_screen.dart';
 
 class CompleteProfileScreen extends StatefulWidget {
   const CompleteProfileScreen({super.key});
@@ -33,6 +34,56 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
   final TextEditingController _shippingPostCodeTEController = TextEditingController();
   final TextEditingController _shippingCountryTEController = TextEditingController();
   final TextEditingController _shippingPhoneTEController = TextEditingController();
+
+
+
+  @override
+  void initState() {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
+      if(await Get.find<ReadProfileDataController>().readProfileData() == true){
+        await Get.find<ReadProfileDataController>().readProfileData();
+        final ReadProfileDataController readProfileDataController = Get.put(ReadProfileDataController());
+        _customerNameTEController.text = readProfileDataController.readUserProfileModel.data?.cusName ?? '';
+        _customerAddressTEController.text = readProfileDataController.readUserProfileModel.data?.cusAdd ?? '';
+        _customerCityTEController.text = readProfileDataController.readUserProfileModel.data?.cusCity ?? '';
+        _customerStateTEController.text = readProfileDataController.readUserProfileModel.data?.cusState ?? '';
+        _customerPostCodeTEController.text = readProfileDataController.readUserProfileModel.data?.cusPostcode ?? '';
+        _customerCountryTEController.text = readProfileDataController.readUserProfileModel.data?.cusCountry ?? '';
+        _customerPhoneTEController.text = readProfileDataController.readUserProfileModel.data?.cusPhone ?? '';
+        _customerFaxTEController.text = readProfileDataController.readUserProfileModel.data?.cusFax ?? '';
+        _shippingNameTEController.text = readProfileDataController.readUserProfileModel.data?.shipName ?? '';
+        _shippingAddressTEController.text = readProfileDataController.readUserProfileModel.data?.shipAdd ?? '';
+        _shippingCityTEController.text = readProfileDataController.readUserProfileModel.data?.shipCity ?? '';
+        _shippingStateTEController.text = readProfileDataController.readUserProfileModel.data?.shipState ?? '';
+        _shippingPostCodeTEController.text = readProfileDataController.readUserProfileModel.data?.shipPostcode ?? '';
+        _shippingCountryTEController.text = readProfileDataController.readUserProfileModel.data?.shipCountry ?? '';
+        _shippingPhoneTEController.text = readProfileDataController.readUserProfileModel.data?.shipPhone ?? '';
+      }
+
+    });
+
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    _customerNameTEController.dispose();
+    _customerAddressTEController.dispose();
+    _customerCityTEController.dispose();
+    _customerStateTEController.dispose();
+    _customerPostCodeTEController.dispose();
+    _customerCountryTEController.dispose();
+    _customerPhoneTEController.dispose();
+    _customerFaxTEController.dispose();
+    _shippingNameTEController.dispose();
+    _shippingAddressTEController.dispose();
+    _shippingCityTEController.dispose();
+    _shippingStateTEController.dispose();
+    _shippingPostCodeTEController.dispose();
+    _shippingCountryTEController.dispose();
+    _shippingPhoneTEController.dispose();
+        super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -67,6 +118,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height: 16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _customerNameTEController,
                     decoration: const InputDecoration(
                       hintText: 'Customer Name',
@@ -81,6 +133,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _customerAddressTEController,
                     decoration: const InputDecoration(
                       hintText: 'Customer Address',
@@ -95,6 +148,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _customerCityTEController,
                     decoration: const InputDecoration(
                       hintText: 'Customer City',
@@ -109,6 +163,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _customerStateTEController,
                     decoration: const InputDecoration(
                       hintText: 'Customer State',
@@ -123,6 +178,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _customerPostCodeTEController,
                     decoration: const InputDecoration(
                       hintText: 'Customer Postcode',
@@ -137,6 +193,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _customerCountryTEController,
                     decoration: const InputDecoration(
                       hintText: 'Customer Country',
@@ -151,6 +208,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _customerPhoneTEController,
                     decoration: const InputDecoration(
                       hintText: 'Customer Phone',
@@ -165,6 +223,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _customerFaxTEController,
                     decoration: const InputDecoration(
                       hintText: 'Customer Fax',
@@ -180,6 +239,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   //Shipping Details
                   const SizedBox(height: 16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _shippingNameTEController,
                     decoration: const InputDecoration(
                       hintText: 'Shipping Name',
@@ -194,6 +254,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _shippingAddressTEController,
                     decoration: const InputDecoration(
                       hintText: 'Shipping Address',
@@ -208,6 +269,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _shippingCityTEController,
                     decoration: const InputDecoration(
                       hintText: 'Shipping City',
@@ -222,6 +284,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _shippingStateTEController,
                     decoration: const InputDecoration(
                       hintText: 'Shipping State',
@@ -236,6 +299,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _shippingPostCodeTEController,
                     decoration: const InputDecoration(
                       hintText: 'Shipping Postcode',
@@ -250,6 +314,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _shippingCountryTEController,
                     decoration: const InputDecoration(
                       hintText: 'Shipping Country',
@@ -264,6 +329,7 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   ),
                   const SizedBox(height:16),
                   TextFormField(
+                    cursorColor: AppColors.primaryColor,
                     controller: _shippingPhoneTEController,
                     decoration: const InputDecoration(
                       hintText: 'Shipping Phone',
@@ -312,20 +378,24 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                                       .trim()),
                                   _shippingCountryTEController.text.trim(),
                                   int.parse(
-                                      _shippingPhoneTEController.text.trim()));
+                                      _shippingPhoneTEController.text.trim()),
+                              );
                               if(result){
                                 Get.snackbar(
-                                  'Profile Completed',
-                                  'Your Profile Completed Successfully!',
+                                  'Profile Updated',
+                                  'Your Profile Updated Successfully!',
                                   colorText: Colors.white,
                                   snackPosition: SnackPosition.BOTTOM,
                                   backgroundColor: AppColors.primaryColor.withOpacity(0.5),
                                 );
-                                Get.to(const HomeScreen());
+                                Get.to( ()=> const MainBottomNavScreen());
                               }
 
                             },
-                            child: const Text('Complete'),
+                            style: ElevatedButton.styleFrom(
+                              backgroundColor: AppColors.primaryColor, // Background color
+                            ),
+                            child: const Text('Submit'),
                           );
                         }
                     ),
