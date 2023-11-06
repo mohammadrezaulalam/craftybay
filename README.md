@@ -177,7 +177,7 @@ flutter pub get
 |  		      **Installable APK**		         |
 
 
-[Click Here to download APK](https://drive.google.com/file/d/1okLK3d4_ezLCFtxwM6Uc1j4EEjV2L8yY/view?usp=sharing)
+[Click Here to download APK](https://drive.google.com/file/d/1DEGAYdnjBy4n5PxUUKGO9TJsUgU7dDen/view?usp=sharing)
 
 
 
