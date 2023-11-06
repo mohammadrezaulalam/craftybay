@@ -3,12 +3,12 @@ import 'dart:async';
 import 'package:get/get.dart';
 
 class TimerController extends GetxController {
-  final countdown = 30.obs;
+  final countdown = 120.obs;
   final isButtonEnabled = false.obs;
   late Timer _timer;
 
   void startTimer() {
-    countdown.value = 30;
+    countdown.value = 120;
     isButtonEnabled.value = false;
 
     _timer = Timer.periodic(const Duration(seconds: 1), (timer) {

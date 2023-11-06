@@ -158,7 +158,6 @@ class _OTPVerificationScreenState extends State<OTPVerificationScreen> {
                                     Get.find<EmailVerificationController>().verifyEmail(widget.email);
                                     //verifyOtp(controller);
                                   }
-                                  print('Button Pressed...');
                                 }
                               : null,
                           child: Text(
