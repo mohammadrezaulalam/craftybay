@@ -45,7 +45,8 @@ class _HomeSliderState extends State<HomeSlider> {
                         sliderData.image ?? '', height: double.infinity, width: double.infinity, fit: BoxFit.fitHeight,
                       ),
                       Positioned(
-                        bottom: 0,
+                        bottom: 6,
+                        left: 6,
                         child: Column(
                           mainAxisSize: MainAxisSize.min,
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -55,7 +56,7 @@ class _HomeSliderState extends State<HomeSlider> {
                               style: const TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.w600,
-                                  color: Colors.white),
+                                  color: AppColors.primaryColor),
                             ),
                           ],
                         ),

@@ -317,19 +317,8 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
     }else{
       if (!_isFavourite) {
         _isFavourite = true;
-        final result = await Get.find<CreateWishListController>()
-            .createWishList(widget.productId ?? 0);
-        if (result) {
-          Get.snackbar(
-            'Added to WishList',
-            'This Product has been Added to Wishlist',
-            colorText: Colors.white,
-            snackPosition: SnackPosition.BOTTOM,
-            backgroundColor: AppColors.primaryColor.withOpacity(0.5),
-          );
-        }
-      } else {
-        _isFavourite = false;
+
+
         final result = await Get.find<ReadWishListController>()
             .removeFromWishList(widget.productId ?? 0);
         if (result) {
@@ -341,6 +330,21 @@ class _ProductDetailsScreenState extends State<ProductDetailsScreen> {
             backgroundColor: AppColors.primaryColor.withOpacity(0.5),
           );
         }
+
+      } else {
+        _isFavourite = false;
+        final result = await Get.find<CreateWishListController>()
+            .createWishList(widget.productId ?? 0);
+        if (result) {
+          Get.snackbar(
+            'Added to WishList',
+            'This Product has been Added to Wishlist',
+            colorText: Colors.white,
+            snackPosition: SnackPosition.BOTTOM,
+            backgroundColor: AppColors.primaryColor.withOpacity(0.5),
+          );
+        }
+
       }
     }
   }

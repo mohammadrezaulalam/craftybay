@@ -95,8 +95,8 @@ class _CreateReviewScreenState extends State<CreateReviewScreen> {
                         if(!_formKey.currentState!.validate()){
                           return;
                         }
-                        final restult = await Get.find<CreateProductReviewController>().createProductReview(widget.productId, productRating, _descriptionTEController.text.trim());
-                        if(restult){
+                        final result = await Get.find<CreateProductReviewController>().createProductReview(widget.productId, productRating, _descriptionTEController.text.trim());
+                        if(result){
                           Get.to( () => ReviewListScreen(productId: widget.productId,),);
                         }
 

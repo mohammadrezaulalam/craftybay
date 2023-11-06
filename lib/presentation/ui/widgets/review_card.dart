@@ -40,7 +40,7 @@ class ReviewCard extends StatelessWidget {
                 Text(reviewData.profile?.cusName ?? ''),
                 const SizedBox(width: 8),
                 RatingBarIndicator(
-                  rating: double.parse(reviewData.rating.toString()),
+                  rating: int.tryParse(reviewData.rating.toString()) == null ? 5 : double.parse(reviewData.rating ?? '0'),
                   itemCount: 5,
                   itemSize: 16.0,
                   physics: const BouncingScrollPhysics(),
@@ -49,6 +49,10 @@ class ReviewCard extends StatelessWidget {
                     color: Colors.amber,
                   ),
                 ),
+                //Text(reviewData.rating.toString()),
+
+
+
               ],
             ),
             subtitle: Padding(

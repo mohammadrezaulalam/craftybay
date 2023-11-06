@@ -16,17 +16,17 @@ class CompleteProfileController extends GetxController{
     String cusAdd,
     String cusCity,
     String cusState,
-    int cusPostcode,
+    String cusPostcode,
     String cusCountry,
-    int cusPhone,
-    int cusFax,
+    String cusPhone,
+    String cusFax,
     String shipName,
     String shipAdd,
     String shipCity,
     String shipState,
-    int shipPostcode,
+    String shipPostcode,
     String shipCountry,
-    int shipPhone,
+    String shipPhone,
   ) async {
     _completeProfileInProgress = true;
     update();

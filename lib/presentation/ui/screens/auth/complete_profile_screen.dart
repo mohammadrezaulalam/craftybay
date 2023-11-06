@@ -363,22 +363,17 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                                   _customerAddressTEController.text.trim(),
                                   _customerCityTEController.text.trim(),
                                   _customerStateTEController.text.trim(),
-                                  int.parse(_customerPostCodeTEController.text
-                                      .trim()),
+                                  _customerPostCodeTEController.text.trim(),
                                   _customerCountryTEController.text.trim(),
-                                  int.parse(
-                                      _customerPhoneTEController.text.trim()),
-                                  int.parse(
-                                      _customerFaxTEController.text.trim()),
+                                  _customerPhoneTEController.text.trim(),
+                                  _customerFaxTEController.text.trim(),
                                   _shippingNameTEController.text.trim(),
                                   _shippingAddressTEController.text.trim(),
                                   _shippingCityTEController.text.trim(),
                                   _shippingStateTEController.text.trim(),
-                                  int.parse(_shippingPostCodeTEController.text
-                                      .trim()),
+                                  _shippingPostCodeTEController.text.trim(),
                                   _shippingCountryTEController.text.trim(),
-                                  int.parse(
-                                      _shippingPhoneTEController.text.trim()),
+                                  _shippingPhoneTEController.text.trim(),
                               );
                               if(result){
                                 Get.snackbar(
