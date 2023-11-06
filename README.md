@@ -77,9 +77,11 @@ CraftyBay follows a well-organized project structure for maintainability and sca
         │   │   ├── product_model.dart
         │   │   ├── product_review_list_model.dart
         │   │   ├── product_wishlist_model.dart
+        │   │   ├── read_user_profile_model.dart
         │   │   ├── review_data.dart
         │   │   ├── slider_data.dart
         │   │   ├── slider_model.dart
+        │   │   ├── user_profile_data.dart
         │   │   └── wishlist_data.dart
         │   ├── services/
         │   │   └── network_caller.dart
