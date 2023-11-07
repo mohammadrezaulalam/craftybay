@@ -1,7 +1,8 @@
+-**Documentation of CraftyBay Ecommerce App**-
+
+
 **CraftyBay - Powering Your Tomorrow, Today**
 
-
-- **Documentation of CraftyBay Ecommerce App** -
 
 
 |  		           **Overview**              |
